@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
         _targetPosition = _rb2d.position + _targetPosition;
 
-        _rb2d.position = Vector2.MoveTowards(_rb2d.position, _targetPosition, _movingSpeed*Time.deltaTime);
+        _rb2d.position =  Vector2.MoveTowards(_rb2d.position, _targetPosition, _movingSpeed*Time.deltaTime);
     }
 
 }

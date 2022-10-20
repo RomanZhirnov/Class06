@@ -4,15 +4,44 @@ using UnityEngine;
 
 public class CreatingEnemies : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private Enemy _template;
+
+    private Transform[] _respawnPoints;
+    private Coroutine _coroutine;
+    private float _creatingInterval = 2f;
+    private int _creatingCount = 30;
     void Start()
     {
-        
+        _respawnPoints = new Transform[gameObject.transform.childCount];
+
+        for (int i = 0; i < _respawnPoints.Length; i++)
+        {
+            _respawnPoints[i] = transform.GetChild(i).transform;
+        }
+
+        if (_coroutine != null)
+        {
+            StopCoroutine(_coroutine);
+        }
+        else
+        {
+            _coroutine = StartCoroutine(CreateEnemy(_creatingInterval));
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator CreateEnemy(float time)
     {
-        
+        var WaitTime = new WaitForSeconds(time);
+
+        do
+        {
+            for (int i = 0; i < _respawnPoints.Length; i++)
+            {
+                Instantiate(_template, _respawnPoints[i].position, Quaternion.identity);
+                _creatingCount--;
+                yield return WaitTime;
+            }
+        } while (_creatingCount>0);
     }
 }
