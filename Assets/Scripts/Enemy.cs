@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
 
     private Animator _animator;
     private Transform _target;
-    private Coroutine _destroyEnemy;
     private Rigidbody2D _rg2D;
 
     private void Start()
@@ -32,12 +31,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<Player>(out Player player))
         {
-            if (_destroyEnemy != null)
-            {
-                StopCoroutine(_destroyEnemy);
-            }
-
-            _destroyEnemy = StartCoroutine(DestroyEnemy());
+            StartCoroutine(DestroyEnemy());
         }
     }
 
