@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     {
         _rg2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        _target = GameObject.FindObjectOfType<Player>().transform;
+        _target = FindObjectOfType<Player>().transform;
     }
 
     private void FixedUpdate()

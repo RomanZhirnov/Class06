@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreatingEnemies : MonoBehaviour
+public class EnemyCreator : MonoBehaviour
 {
     [SerializeField] private Enemy _template;
     [SerializeField] private Player _collision;
