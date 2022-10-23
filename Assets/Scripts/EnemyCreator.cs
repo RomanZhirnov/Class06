@@ -12,8 +12,6 @@ public class EnemyCreator : MonoBehaviour
     private float _creatingInterval = 2f;
     private int _creatingCount = 30;
 
-    //public 
-
     private void OnEnable()
     {
         _player.Collide += StopCreating;
@@ -41,7 +39,6 @@ public class EnemyCreator : MonoBehaviour
         {
             _coroutine = StartCoroutine(CreateEnemy(_creatingInterval));
         }
-
     }
 
     private void StopCreating()
