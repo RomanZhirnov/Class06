@@ -5,21 +5,23 @@ using UnityEngine;
 public class EnemyCreator : MonoBehaviour
 {
     [SerializeField] private Enemy _template;
-    [SerializeField] private Player _collision;
+    [SerializeField] private Player _player;
 
     private Transform[] _respawnPoints;
     private Coroutine _coroutine;
     private float _creatingInterval = 2f;
     private int _creatingCount = 30;
 
+    //public 
+
     private void OnEnable()
     {
-        _collision.Collide += StopCreating;
+        _player.Collide += StopCreating;
     }
 
     private void OnDisable()
     {
-        _collision.Collide -= StopCreating;
+        _player.Collide -= StopCreating;
     }
 
     private void Start()
@@ -58,7 +60,8 @@ public class EnemyCreator : MonoBehaviour
         {
             for (int i = 0; i < _respawnPoints.Length; i++)
             {
-                Instantiate(_template, _respawnPoints[i].position, Quaternion.identity);
+                var enemy = Instantiate(_template, _respawnPoints[i].position, Quaternion.identity);
+                enemy.SetTarget(_player.GetComponent<Transform>());
                 _creatingCount--;
                 yield return WaitTime;
             }

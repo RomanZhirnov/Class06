@@ -19,7 +19,6 @@ public class Enemy : MonoBehaviour
     {
         _rg2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        _target = FindObjectOfType<Player>().transform;
     }
 
     private void FixedUpdate()
@@ -33,6 +32,11 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(DestroyEnemy());
         }
+    }
+
+    public void SetTarget(Transform target)
+    {
+        _target = target;
     }
 
     private IEnumerator DestroyEnemy()
