@@ -50,7 +50,7 @@ public class EnemyCreator : MonoBehaviour
 
         while (_enemiesCount > 0)
         {
-            if (pointsCount > _respawnPoints.Length)
+            if (pointsCount >= _respawnPoints.Length)
             {
                 pointsCount = 0;
             }
