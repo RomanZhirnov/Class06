@@ -52,7 +52,7 @@ public class EnemyCreator : MonoBehaviour
             for (int i = 0; i < _respawnPoints.Length; i++)
             {
                 var enemy = Instantiate(_template, _respawnPoints[i].position, Quaternion.identity);
-                enemy.SetTarget(_player.GetComponent<Transform>());
+                enemy.SetTarget(_player.transform);
                 _creatingCount--;
                 yield return WaitTime;
             }
