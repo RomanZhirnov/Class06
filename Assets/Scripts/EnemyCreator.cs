@@ -31,14 +31,8 @@ public class EnemyCreator : MonoBehaviour
             _respawnPoints[i] = transform.GetChild(i).transform;
         }
 
-        if (_coroutine != null)
-        {
-            StopCoroutine(_coroutine);
-        }
-        else
-        {
-            _coroutine = StartCoroutine(CreateEnemy(_creatingInterval));
-        }
+        _coroutine = StartCoroutine(CreateEnemy(_creatingInterval));
+
     }
 
     private void StopCreating()
@@ -62,6 +56,6 @@ public class EnemyCreator : MonoBehaviour
                 _creatingCount--;
                 yield return WaitTime;
             }
-        } while (_creatingCount>0);
+        } while (_creatingCount > 0);
     }
 }

@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _template: {fileID: 5227215457965808901, guid: 1986a118172ba014e836164a67e97986, type: 3}
-  _collision: {fileID: 2098486347}
+  _player: {fileID: 2098486347}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
