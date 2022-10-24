@@ -10,7 +10,7 @@ public class EnemyCreator : MonoBehaviour
     private Transform[] _respawnPoints;
     private Coroutine _coroutine;
     private float _creatingInterval = 2f;
-    private int _creatingCount = 30;
+    private int _enemiesCount = 30;
 
     private void OnEnable()
     {
@@ -46,16 +46,20 @@ public class EnemyCreator : MonoBehaviour
     private IEnumerator CreateEnemy(float time)
     {
         var WaitTime = new WaitForSeconds(time);
+        int pointsCount = 0;
 
-        do
+        while (_enemiesCount > 0)
         {
-            for (int i = 0; i < _respawnPoints.Length; i++)
+            if (pointsCount > _respawnPoints.Length)
             {
-                var enemy = Instantiate(_template, _respawnPoints[i].position, Quaternion.identity);
-                enemy.SetTarget(_player.transform);
-                _creatingCount--;
-                yield return WaitTime;
+                pointsCount = 0;
             }
-        } while (_creatingCount > 0);
+
+            var enemy = Instantiate(_template, _respawnPoints[pointsCount].position, Quaternion.identity);
+            enemy.SetTarget(_player.transform);
+            pointsCount++;
+            _enemiesCount--;
+            yield return WaitTime;
+        }
     }
 }
