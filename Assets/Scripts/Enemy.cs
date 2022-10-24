@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     private Animator _animator;
     private Transform _target;
     private Rigidbody2D _rg2D;
+    private HashAnimationName _hasheName = new HashAnimationName();
 
     private void Start()
     {
@@ -41,8 +42,15 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator DestroyEnemy()
     {
-        _animator.SetTrigger("IsCollision");
+        _animator.SetTrigger(_hasheName.IsCollision);
         yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
+}
+
+public class HashAnimationName
+{
+    private int _isCollision = Animator.StringToHash("IsCollision");
+
+    public int IsCollision => _isCollision;
 }
